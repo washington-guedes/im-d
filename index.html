@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Distortion</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  
+  <h3>
+    Choose your photo
+  </h3>
+
+  <input type="file" name="photo" id="photo">
+  <button id="load">Load photo</button>
+  
+  <hr>
+
+  Number of rows:
+  <input type="number" name="nrows" id="nrows" min="1" value="8">
+  <br>
+
+  Number of columns:
+  <input type="number" name="ncols" id="ncols" min="1" value="8">
+  <br>
+
+  Grayscale:
+  <input type="checkbox" name="grayscale" id="grayscale">
+
+  <hr>
+
+  Output: <br>
+  <canvas id="output" />
+
+</body>
+</html>
+
+<script src="script.js"></script>
