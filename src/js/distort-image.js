@@ -1,6 +1,9 @@
+import { make } from './utils/make'
+import { Pixel } from './pixel'
+
 let running = false
 
-async function distort({ canvas, image, rows, cols, grayscale, alpha }) {
+export async function distort({ canvas, image, rows, cols, grayscale, alpha }) {
   if (running) {
     throw Error('Already running')
   }

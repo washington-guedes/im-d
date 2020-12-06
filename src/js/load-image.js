@@ -1,4 +1,4 @@
-async function loadImage() {
+export async function loadImage() {
   if (!this.files || !this.files[0]) {
     throw Error('Missing photo')
   }

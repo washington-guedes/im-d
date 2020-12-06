@@ -1,3 +1,3 @@
-function make(len, mapper) {
+export function make(len, mapper) {
   return [...new Array(+len)].map(mapper)
 }

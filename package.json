@@ -1,0 +1,31 @@
+{
+  "name": "image-distortion",
+  "version": "1.0.0",
+  "description": "Get average RGBA values of image pixels in blocks, also allowing grayscale effect.",
+  "private": true,
+  "scripts": {
+    "serve": "node --experimental-modules index.js",
+    "build": "npx webpack"
+  },
+  "author": "avwl017@gmail.com",
+  "homepage": "https://github.com/washington-guedes/image-distortion#readme",
+  "bugs": {
+    "url": "https://github.com/washington-guedes/image-distortion/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/washington-guedes/image-distortion.git"
+  },
+  "keywords": [
+    "image",
+    "distortion",
+    "blur",
+    "effect"
+  ],
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0"
+  }
+}

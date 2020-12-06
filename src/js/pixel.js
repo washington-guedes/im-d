@@ -1,4 +1,4 @@
-class Pixel {
+export class Pixel {
   r = 0
   g = 0
   b = 0
