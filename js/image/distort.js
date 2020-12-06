@@ -1,6 +1,6 @@
 let running = false
 
-async function distort({ canvas, image, rows, cols, grayscale, alpha, border }) {
+async function distort({ canvas, image, rows, cols, grayscale, alpha }) {
   if (running) {
     throw Error('Already running')
   }
@@ -8,9 +8,15 @@ async function distort({ canvas, image, rows, cols, grayscale, alpha, border }) 
     throw Error('Invalid block size')
   }
   
+  const actionLabel = (() => {
+    let label = `${rows} rows, ${cols} cols`
+    if (grayscale) label += ', grayscale'
+    if (alpha) label += ', alpha included'
+    return label
+  })()
+  
   running = true
-  console.time('distortion')
-  console.log(rows, cols, grayscale, alpha, border)
+  console.time(actionLabel)
   
   canvas.width = image.width
   canvas.height = image.height
@@ -52,54 +58,28 @@ async function distort({ canvas, image, rows, cols, grayscale, alpha, border }) 
   loop((k, item) => {
     if (grayscale) {
       if (alpha) {
-        pixels[k] = pixels[k+1] = pixels[k+2] = pixels[k+3] = item.avgRGBA()
+        pixels[k] = pixels[k+1] = pixels[k+2] = pixels[k+3] = item.avg('rgba')
       } else {
-        pixels[k] = pixels[k+1] = pixels[k+2] = item.avgRGB()
-        pixels[k+3] = item.avgA()
+        pixels[k] = pixels[k+1] = pixels[k+2] = item.avg('rgb')
+        pixels[k+3] = item.avg('a')
       }
     } else {
-      pixels[k] = item.avgR()
-      pixels[k+1] = item.avgG()
-      pixels[k+2] = item.avgB()
-      pixels[k+3] = item.avgA()
+      if (alpha) {
+        pixels[k] = item.avg('ra')
+        pixels[k+1] = item.avg('ga')
+        pixels[k+2] = item.avg('ba')
+        pixels[k+3] = item.avg('a')
+      } else {
+        pixels[k] = item.avg('r')
+        pixels[k+1] = item.avg('g')
+        pixels[k+2] = item.avg('b')
+        pixels[k+3] = item.avg('a')
+      }
     }
   })
   
-  const avgRGB = k => {
-    return (pixels[k] + pixels[k+1] + pixels[k+2]) / 3
-  }
-  
-  const setPixelBlack = k => {
-    pixels[k] = pixels[k+1] = pixels[k+2] = 0
-    pixels[k+3] = 255
-  }
-  
-  const setBorder = (condition, offset) => {
-    if (!condition) {
-      return
-    }
-    loop(k => {
-      if (k < offset) return
-      const thisAvg = avgRGB(k)
-      const prevAvg = avgRGB(k - offset)
-      const isAfter = thisAvg > border.eval || prevAvg > border.eval
-      const isBefore = thisAvg < border.eval || prevAvg < border.eval
-      if ((border.after && isAfter) || (border.before && isBefore)) {
-        const diff = Math.abs(avgRGB(k) - avgRGB(k - offset))
-        const isLower = border.lt && diff < border.diff
-        const isGreater = border.gt && diff > border.diff
-        if (isLower || isGreater) {
-          setPixelBlack(k - offset)
-        }
-      }
-    })
-  }
-  
-  setBorder(border.v, 4)
-  setBorder(border.h, width * 4)
-  
   ctx.putImageData(imageData, 0, 0)
   
-  console.timeEnd('distortion')
+  console.timeEnd(actionLabel)
   running = false
 }
