@@ -8,26 +8,46 @@
 <body>
   
   <h3>Choose your photo</h3>
-  <input type="file" name="photo" id="photo" accept="image/*">
+  <input type="file" id="photo" accept="image/*">
   <hr>
   
   Number of rows:
-  <input type="number" name="nrows" id="nrows" min="1" value="32">
+  <input type="number" id="nrows" min="1" value="42">
   <br>
   
   Number of columns:
-  <input type="number" name="ncols" id="ncols" min="1" value="32">
+  <input type="number" id="ncols" min="1" value="42">
   <br>
   
   Grayscale:
-  <input type="checkbox" name="grayscale" id="grayscale" checked>
+  <input type="checkbox" id="grayscale" checked>
+  <br>
   
   Misc Alpha:
-  <input type="checkbox" name="alpha" id="alpha">
+  <input type="checkbox" id="alpha" checked>
+  <hr>
+  
+  <span class="bold">Borders:</span>
+  Horizontal: <input type="checkbox" id="borderh" checked>
+  Vertical: <input type="checkbox" id="borderv" checked><br>
+  
+  <div class="flex">
+    diff:
+    <input type="range" id="borderdiff" min="0" max="255" value="21" class="flex-1">
+    <input type="radio" name="bordercmp" id="borderlt" checked> lower than
+    <input type="radio" name="bordercmp" id="bordergt"> greater than
+  </div>
+  
+  <div class="flex">
+    evaluate:
+    <input type="range" id="bordereval" min="0" max="255" value="21" class="flex-1">
+    <input type="radio" name="borderif" id="borderifb" checked> before
+    <input type="radio" name="borderif" id="borderifa"> after
+  </div>
   <hr>
   
   Output: <br>
-  <canvas id="output" />
+  <canvas id="output"></canvas>
   
 </body>
 </html>

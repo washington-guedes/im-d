@@ -13,22 +13,22 @@ class Pixel {
     this.len++
   }
 
-  avg_r() {
+  avgR() {
     return this.r / this.len | 0
   }
-  avg_g() {
+  avgG() {
     return this.g / this.len | 0
   }
-  avg_b() {
+  avgB() {
     return this.b / this.len | 0
   }
-  avg_a() {
+  avgA() {
     return this.a / this.len | 0
   }
-  avg_rgb() {
+  avgRGB() {
     return (this.r + this.g + this.b) / 3 / this.len | 0
   }
-  avg_rgba() {
+  avgRGBA() {
     return (this.r + this.g + this.b + this.a) / 4 / this.len | 0
   }
 }

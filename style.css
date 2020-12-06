@@ -5,3 +5,15 @@ input[type=number] {
 canvas {
   max-width: 100%;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.bold  {
+  font-weight: bold;
+}
