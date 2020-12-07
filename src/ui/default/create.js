@@ -1,5 +1,8 @@
-import './style.css'
+import * as Component from './component.html'
+import './style.scss'
 
 export function create({ wrapper }) {
-  console.log('createImageDistortionArea .. TODO', wrapper)
+  wrapper.innerHTML = Component
+  
+  
 }

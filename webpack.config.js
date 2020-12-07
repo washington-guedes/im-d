@@ -1,6 +1,17 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+const htmlRule = {
+  test: /\.html$/,
+  use: ['html-loader']
+}
+
+const cssRule = {
+  test: /\.s?css$/,
+  exclude: /node_modules/,
+  use: ['style-loader', 'css-loader', 'sass-loader']
+}
+
 const jsRule = {
   test: /\.js$/,
   exclude: /node_modules/,
@@ -11,12 +22,6 @@ const jsRule = {
       plugins: ['@babel/plugin-proposal-class-properties']
     }
   }
-}
-
-const cssRule = {
-  test: /\.css$/,
-  exclude: /node_modules/,
-  use: ['style-loader', 'css-loader']
 }
 
 module.exports = {
@@ -31,6 +36,6 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
   module: {
-    rules: [cssRule, jsRule]
+    rules: [htmlRule, cssRule, jsRule]
   }
 }

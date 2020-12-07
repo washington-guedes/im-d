@@ -1,0 +1,73 @@
+.image-distortion {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  &--body {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    background-color: #aaa;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &--canvas {
+    border: 1px solid #000;
+    max-width: 100%;
+  }
+  
+  &--header {
+    width: 100%;
+    line-height: 1.5rem;
+    height: 3rem;
+    background-color: #000;
+    color: #fff;
+    
+    display: flex;
+    flex-direction: row;
+  }
+  
+  &--filter {
+    box-sizing: border-box;
+    margin: 0 5px;
+    min-width: 0;
+    
+    display: flex;
+    flex-direction: col;
+    
+    &:not(:first-child) {
+      border-left: 2px solid #fff;
+    }
+  }
+  
+  // &--file {
+    //   max-width: 25%;
+    // }
+    
+    &--grayscale-text::before {
+      content: 'Grayscale:';
+    }
+    
+    &--alpha-text::before {
+      content: 'Alpha:';
+    }
+    
+    &--rows,
+    &--cols {
+      width: 60px;
+    }
+    
+    &--rows-text::before {
+      content: 'Number of rows:';
+    }
+    
+    &--cols-text::before {
+      content: 'Number of cols:';
+    }
+    
+    font-size: 0.75rem;
+  }
+  
