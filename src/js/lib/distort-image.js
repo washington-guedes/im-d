@@ -1,9 +1,9 @@
-import { make } from './utils/make'
+import { make } from '../utils/make'
 import { Pixel } from './pixel'
 
 let running = false
 
-export async function distort({ canvas, image, rows, cols, grayscale, alpha }) {
+export function run({ canvas, image, rows, cols, grayscale, alpha, log }) {
   if (running) {
     throw Error('Already running')
   }
@@ -19,7 +19,7 @@ export async function distort({ canvas, image, rows, cols, grayscale, alpha }) {
   })()
   
   running = true
-  console.time(actionLabel)
+  if (log) console.time(actionLabel)
   
   canvas.width = image.width
   canvas.height = image.height
@@ -83,6 +83,6 @@ export async function distort({ canvas, image, rows, cols, grayscale, alpha }) {
   
   ctx.putImageData(imageData, 0, 0)
   
-  console.timeEnd(actionLabel)
+  if (log) console.timeEnd(actionLabel)
   running = false
 }

@@ -20,9 +20,12 @@ const cssRule = {
 }
 
 module.exports = {
+  devtool: 'source-map',
   output: {
+    path: path.resolve(__dirname, 'dist'),
     filename: 'image-distortion.min.js',
-    path: path.resolve(__dirname, 'dist')
+    library: 'imageDistortion',
+    libraryTarget: 'window'
   },
   plugins: [
     new CleanWebpackPlugin()
