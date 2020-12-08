@@ -21,7 +21,7 @@ export function create({ wrapper, log, image, rows, cols, grayscale, alpha } = {
   
   __file.onchange = async function() {
     image = await loadImageFromInputFile({
-      inputFile: file,
+      inputFile: __file,
       log
     })
     __rows.max = image.height
