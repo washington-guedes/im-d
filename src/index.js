@@ -7,40 +7,50 @@ import { loadImage as _loadImage } from './js/lib/load-image'
 * with all needed **input values** to run the image distortion
 * - The result will be set on the { canvas } element
 */
-export function runDistortion({ image, canvas, rows, cols, grayscale, alpha, log } = {}) {
+export function runDistortion({
+  image,
+  canvas,
+  rows = 8,
+  cols = 8,
+  grayscale = false,
+  alpha = false,
+  log = false
+} = {}) {
   if (!image) {
     throw Error('Missing photo image')
   }
   if (!canvas) {
     throw Error('Missing canvas')
   }
-  
-  _runImageDistortion({
-    image,
-    canvas,
-    rows,
-    cols,
-    grayscale,
-    alpha,
-    log
-  })
+  _runImageDistortion({ image, canvas, rows, cols, grayscale, alpha, log })
 }
 
 /**
 * Receives the **HTML element** to use as **wrapper**
 * to include the default UI inside
 */
-export function createDefaultUI({ wrapper, log } = {}) {
+export function createDefaultUI({
+  wrapper,
+  image = new Image(),
+  rows = 8,
+  cols = 8,
+  grayscale = false,
+  alpha = false,
+  log = false
+} = {}) {
   if (!wrapper) {
     throw Error('Missing wrapper element to build the default UI on it')
   }
-  _createDefaultUI({ wrapper, log })
+  _createDefaultUI({ wrapper, image, rows, cols, grayscale, alpha, log })
 }
 
 /**
 * A utility function to help you ;)
 */
-export async function loadImageFromInputFile({ inputFile, log } = {}) {
+export async function loadImageFromInputFile({
+  inputFile,
+  log = false
+} = {}) {
   if (!inputFile) {
     throw Error('Missing input file to load image')
   }
