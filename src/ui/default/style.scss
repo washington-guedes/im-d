@@ -1,13 +1,14 @@
-.image-distortion {
+.im-d {
   display: flex;
   flex-direction: column;
   height: 100%;
+  font-size: 0.75rem;
+  background-color: #aaa;
   
   &--body {
     flex: 1;
     min-height: 0;
     width: 100%;
-    background-color: #aaa;
     
     display: flex;
     align-items: center;
@@ -22,52 +23,64 @@
   &--header {
     width: 100%;
     line-height: 1.5rem;
-    height: 3rem;
-    background-color: #000;
     color: #fff;
     
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
   }
   
   &--filter {
     box-sizing: border-box;
-    margin: 0 5px;
-    min-width: 0;
+    margin: 2px;
+    padding: 0 8px;
+    border-radius: 12px;
+    background-color: #888;
+    border: 1px solid #ddd;
     
     display: flex;
-    flex-direction: col;
-    
-    &:not(:first-child) {
-      border-left: 2px solid #fff;
-    }
+    flex-direction: row;
+    align-items: center;
   }
   
-  // &--file {
-    //   max-width: 25%;
-    // }
-    
-    &--grayscale-text::before {
-      content: 'Grayscale:';
-    }
-    
-    &--alpha-text::before {
-      content: 'Alpha:';
-    }
-    
-    &--rows,
-    &--cols {
-      width: 60px;
-    }
-    
-    &--rows-text::before {
-      content: 'Number of rows:';
-    }
-    
-    &--cols-text::before {
-      content: 'Number of cols:';
-    }
-    
-    font-size: 0.75rem;
+  &--file {
+    display: none;
   }
   
+  &--button {
+    background-color: #fff;
+  }
+  
+  &--number {
+    width: 50px;
+  }
+
+  &--button {
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #777;
+  }
+  
+  &--label {
+    margin-right: 4px;
+  }
+  
+  &--filter-image > &--label::before {
+    content: 'Open Image';
+  }
+  
+  &--filter-grayscale > &--label::before {
+    content: 'Grayscale:';
+  }
+  
+  &--filter-alpha > &--label::before {
+    content: 'Alpha:';
+  }
+  
+  &--filter-rows > &--label::before {
+    content: 'N of rows:';
+  }
+  
+  &--filter-cols > &--label::before {
+    content: 'N of cols:';
+  }
+}

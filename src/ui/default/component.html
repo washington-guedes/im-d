@@ -1,34 +1,27 @@
-<div class="image-distortion">
-  <div class="image-distortion--header">
-    <div class="image-distortion--filter">
-      <input type="file" class="image-distortion--file">
-    </div>
-    <div class="image-distortion--filter">
-      <label>
-        <span class="image-distortion--grayscale-text"></span>
-        <input type="checkbox" class="image-distortion--grayscale">
-      </label>
-    </div>
-    <div class="image-distortion--filter">
-      <label>
-        <span class="image-distortion--alpha-text"></span>
-        <input type="checkbox" class="image-distortion--alpha">
-      </label>
-    </div>
-    <div class="image-distortion--filter">
-      <label>
-        <span class="image-distortion--rows-text"></span>
-        <input type="text" class="image-distortion--rows">
-      </label>
-    </div>
-    <div class="image-distortion--filter">
-      <label>
-        <span class="image-distortion--cols-text"></span>
-        <input type="text" class="image-distortion--cols">
-      </label>
-    </div>
+<div class="im-d">
+  <div class="im-d--header">
+    <label class="im-d--filter im-d--button im-d--filter-image">
+      <span class="im-d--label"></span>
+      <input type="file" class="im-d--file">
+    </label>
+    <label class="im-d--filter im-d--filter-grayscale">
+      <span class="im-d--label"></span>
+      <input type="checkbox" class="im-d--checkbox">
+    </label>
+    <label class="im-d--filter im-d--filter-alpha">
+      <span class="im-d--label"></span>
+      <input type="checkbox" class="im-d--checkbox">
+    </label>
+    <label class="im-d--filter im-d--filter-rows">
+      <span class="im-d--label"></span>
+      <input type="number" class="im-d--number">
+    </label>
+    <label class="im-d--filter im-d--filter-cols">
+      <span class="im-d--label"></span>
+      <input type="number" class="im-d--number">
+    </label>
   </div>
-  <div class="image-distortion--body">
-    <canvas class="image-distortion--canvas"></canvas>
+  <div class="im-d--body">
+    <canvas class="im-d--canvas"></canvas>
   </div>
 </div>
