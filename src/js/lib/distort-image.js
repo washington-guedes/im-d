@@ -11,6 +11,9 @@ export function run({ canvas, image, rows, cols, grayscale, alpha, log }) {
     throw Error('Invalid block size')
   }
   
+  rows = Math.min(rows, image.height)
+  cols = Math.min(cols, image.width)
+  
   const actionLabel = (() => {
     let label = `${rows} rows, ${cols} cols`
     if (grayscale) label += ', grayscale'
