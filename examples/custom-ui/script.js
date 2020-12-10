@@ -33,8 +33,10 @@ function run() {
     canvas: output,
     rows: +nrows.value,
     cols: +ncols.value,
-    grayscale: grayscale.checked,
-    alpha: alpha.checked,
+    avgR: grayscale.checked,
+    avgG: grayscale.checked,
+    avgB: grayscale.checked,
+    avgA: alpha.checked,
     log: true
   })
 }
