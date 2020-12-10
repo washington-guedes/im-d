@@ -1,25 +1,35 @@
 <div class="im-d">
   <div class="im-d__header">
-    <label class="im-d__filter im-d__button im-d__filter-image">
-      <span class="im-d__label"></span>
-      <input type="file" class="im-d__file">
-    </label>
-    <label class="im-d__filter im-d__filter-grayscale">
-      <span class="im-d__label"></span>
-      <input type="checkbox" class="im-d__checkbox">
-    </label>
-    <label class="im-d__filter im-d__filter-alpha">
-      <span class="im-d__label"></span>
-      <input type="checkbox" class="im-d__checkbox">
-    </label>
-    <label class="im-d__filter im-d__filter-rows">
-      <span class="im-d__label"></span>
-      <input type="number" class="im-d__number" min="1">
-    </label>
-    <label class="im-d__filter im-d__filter-cols">
-      <span class="im-d__label"></span>
-      <input type="number" class="im-d__number" min="1">
-    </label>
+    <div class="im-d__filter im-d__button im-d__filter-image">
+      <label class="im-d__label">
+        <input type="file" class="im-d__file">
+      </label>
+    </div>
+    <div class="im-d__filter im-d__filter-rows">
+      <label class="im-d__label">
+        <input type="number" class="im-d__number" min="1">
+      </label>
+    </div>
+    <div class="im-d__filter im-d__filter-cols">
+      <label class="im-d__label">
+        <input type="number" class="im-d__number" min="1">
+      </label>
+    </div>
+    <div class="im-d__filter im-d__filter-average">
+      <label class="im-d__label im-d__label-avg"></label>
+      <label class="im-d__label im-d__label-avg-r">
+        <input type="checkbox" class="im-d__checkbox im-d__checkbox-r">
+      </label>
+      <label class="im-d__label im-d__label-avg-g">
+        <input type="checkbox" class="im-d__checkbox im-d__checkbox-g">
+      </label>
+      <label class="im-d__label im-d__label-avg-b">
+        <input type="checkbox" class="im-d__checkbox im-d__checkbox-b">
+      </label>
+      <label class="im-d__label im-d__label-avg-a">
+        <input type="checkbox" class="im-d__checkbox im-d__checkbox-a">
+      </label>
+    </div>
   </div>
   <canvas class="im-d__canvas"></canvas>
 </div>

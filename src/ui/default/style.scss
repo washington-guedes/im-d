@@ -65,20 +65,24 @@
   
   &__label {
     margin-right: 4px;
+    display: flex;
+    align-items: center;
   }
   
   &__filter-image > &__label::before {
     content: 'Open Image';
   }
-  
-  &__filter-grayscale > &__label::before {
-    content: 'Grayscale:';
+
+  &__label-avg::before { content: 'Average'; }
+  &__label-avg-r::before { content: 'R:'; }
+  &__label-avg-g::before { content: 'G:'; }
+  &__label-avg-b::before { content: 'B:'; }
+  &__label-avg-a::before { content: 'A:'; }
+
+  &__checkbox {
+    margin-right: 5px;
   }
-  
-  &__filter-alpha > &__label::before {
-    content: 'Alpha:';
-  }
-  
+
   &__filter-rows > &__label::before {
     content: 'N of rows:';
   }

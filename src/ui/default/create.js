@@ -2,17 +2,19 @@ import { runDistortion, loadImageFromInputFile } from '../..'
 import * as Component from './component.html'
 import './style.scss'
 
-export function create({ wrapper, log, image, rows, cols, grayscale, alpha } = {}) {
+export function create({ wrapper, log, image, rows, cols, avgR, avgG, avgB, avgA } = {}) {
   wrapper.innerHTML = Component
   
   const __file =  wrapper.querySelector('.im-d__file')
-  const __grayscale = wrapper.querySelector('.im-d__filter-grayscale > .im-d__checkbox')
-  const __alpha = wrapper.querySelector('.im-d__filter-alpha > .im-d__checkbox')
-  const __rows = wrapper.querySelector('.im-d__filter-rows > .im-d__number')
-  const __cols = wrapper.querySelector('.im-d__filter-cols > .im-d__number')
+  const __rows = wrapper.querySelector('.im-d__filter-rows .im-d__number')
+  const __cols = wrapper.querySelector('.im-d__filter-cols .im-d__number')
+  const __avgR = wrapper.querySelector('.im-d__checkbox-r')
+  const __avgG = wrapper.querySelector('.im-d__checkbox-g')
+  const __avgB = wrapper.querySelector('.im-d__checkbox-b')
+  const __avgA = wrapper.querySelector('.im-d__checkbox-a')
   const __canvas = wrapper.querySelector('.im-d__canvas')
   
-  ;[__grayscale, __alpha].forEach(input => {
+  ;[__avgR, __avgG, __avgB, __avgA].forEach(input => {
     input.onchange = () => run()
   })
   ;[__rows, __cols].forEach(input => {
@@ -31,8 +33,10 @@ export function create({ wrapper, log, image, rows, cols, grayscale, alpha } = {
   
   __rows.value = rows
   __cols.value = cols
-  if (grayscale) __grayscale.checked = true
-  if (alpha) __alpha.checked = true
+  if (avgR) __avgR.checked = true
+  if (avgG) __avgG.checked = true
+  if (avgB) __avgB.checked = true
+  if (avgA) __avgA.checked = true
   if (image) image.onload = () => {
     image = image
     __rows.max = image.height
@@ -44,8 +48,10 @@ export function create({ wrapper, log, image, rows, cols, grayscale, alpha } = {
     runDistortion({
       image,
       canvas: __canvas,
-      grayscale: __grayscale.checked,
-      alpha: __alpha.checked,
+      avgR: __avgR.checked,
+      avgG: __avgG.checked,
+      avgB: __avgB.checked,
+      avgA: __avgA.checked,
       rows: +__rows.value,
       cols: +__cols.value,
       log

@@ -3,7 +3,7 @@ import { Pixel } from './pixel'
 
 let running = false
 
-export function run({ canvas, image, rows, cols, grayscale, alpha, log }) {
+export function run({ canvas, image, rows, cols, avgR, avgG, avgB, avgA, log }) {
   if (running) {
     throw Error('Already running')
   }
@@ -11,13 +11,15 @@ export function run({ canvas, image, rows, cols, grayscale, alpha, log }) {
     throw Error('Invalid block size')
   }
   
-  rows = Math.min(rows, image.height)
-  cols = Math.min(cols, image.width)
+  rows = Math.min(rows, Math.max(canvas.height, image.height))
+  cols = Math.min(cols, Math.max(canvas.width, image.width))
   
   const actionLabel = (() => {
     let label = `${rows} rows, ${cols} cols`
-    if (grayscale) label += ', grayscale'
-    if (alpha) label += ', alpha included'
+    if (avgR) label += ', avgR'
+    if (avgG) label += ', avgG'
+    if (avgB) label += ', avgB'
+    if (avgA) label += ', avgA'
     return label
   })()
   
@@ -61,27 +63,18 @@ export function run({ canvas, image, rows, cols, grayscale, alpha, log }) {
     item.add(pixels[k], pixels[k+1], pixels[k+2], pixels[k+3])
   })
   
+  let groupedKey = ''
+  if (avgR) groupedKey += 'r'
+  if (avgG) groupedKey += 'g'
+  if (avgB) groupedKey += 'b'
+  if (avgA) groupedKey += 'a'
+  
   loop((k, item) => {
-    if (grayscale) {
-      if (alpha) {
-        pixels[k] = pixels[k+1] = pixels[k+2] = pixels[k+3] = item.avg('rgba')
-      } else {
-        pixels[k] = pixels[k+1] = pixels[k+2] = item.avg('rgb')
-        pixels[k+3] = item.avg('a')
-      }
-    } else {
-      if (alpha) {
-        pixels[k] = item.avg('ra')
-        pixels[k+1] = item.avg('ga')
-        pixels[k+2] = item.avg('ba')
-        pixels[k+3] = item.avg('a')
-      } else {
-        pixels[k] = item.avg('r')
-        pixels[k+1] = item.avg('g')
-        pixels[k+2] = item.avg('b')
-        pixels[k+3] = item.avg('a')
-      }
-    }
+    const groupedAvg = item.avg(groupedKey)
+    pixels[k] = avgR ? groupedAvg : item.avg('r')
+    pixels[k+1] = avgG ? groupedAvg : item.avg('g')
+    pixels[k+2] = avgB ? groupedAvg : item.avg('b')
+    pixels[k+3] = avgA ? groupedAvg : item.avg('a')
   })
   
   ctx.putImageData(imageData, 0, 0)

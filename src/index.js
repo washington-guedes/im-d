@@ -12,8 +12,10 @@ export function runDistortion({
   canvas,
   rows = 8,
   cols = 8,
-  grayscale = false,
-  alpha = false,
+  avgR = false,
+  avgG = false,
+  avgB = false,
+  avgA = false,
   log = false
 } = {}) {
   if (!image) {
@@ -22,7 +24,7 @@ export function runDistortion({
   if (!canvas) {
     throw Error('Missing canvas')
   }
-  _runImageDistortion({ image, canvas, rows, cols, grayscale, alpha, log })
+  _runImageDistortion({ image, canvas, rows, cols, avgR, avgG, avgB, avgA, log })
 }
 
 /**
@@ -34,14 +36,16 @@ export function createDefaultUI({
   image = new Image(),
   rows = 8,
   cols = 8,
-  grayscale = false,
-  alpha = false,
+  avgR = false,
+  avgG = false,
+  avgB = false,
+  avgA = false,
   log = false
 } = {}) {
   if (!wrapper) {
     throw Error('Missing wrapper element to build the default UI on it')
   }
-  _createDefaultUI({ wrapper, image, rows, cols, grayscale, alpha, log })
+  _createDefaultUI({ wrapper, image, rows, cols, avgR, avgG, avgB, avgA, log })
 }
 
 /**
