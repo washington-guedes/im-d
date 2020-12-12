@@ -21,10 +21,12 @@
     left: 0;
   }
   
-  &__canvas {
+  &__canvas,
+  &__video {
     border: 1px dashed #000;
     background-color: #fff;
     max-width: 100%;
+    display: none;
   }
   
   &__filter {
@@ -73,6 +75,14 @@
     content: 'Open Image';
   }
 
+  &__filter-stream > &__label::before {
+    content: 'Stream'
+  }
+
+  &__filter-save > &__label::before {
+    content: 'Save'
+  }
+
   &__label-avg::before { content: 'Average'; }
   &__label-avg-r::before { content: 'R:'; }
   &__label-avg-g::before { content: 'G:'; }
@@ -80,7 +90,11 @@
   &__label-avg-a::before { content: 'A:'; }
 
   &__checkbox {
-    margin-right: 5px;
+    margin-left: 4px;
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
   }
 
   &__filter-rows > &__label::before {

@@ -33,7 +33,8 @@ export function runDistortion({
 */
 export function createDefaultUI({
   wrapper,
-  image = new Image(),
+  image,
+  stream = false,
   rows = 8,
   cols = 8,
   avgR = false,
@@ -45,7 +46,7 @@ export function createDefaultUI({
   if (!wrapper) {
     throw Error('Missing wrapper element to build the default UI on it')
   }
-  _createDefaultUI({ wrapper, image, rows, cols, avgR, avgG, avgB, avgA, log })
+  _createDefaultUI({ wrapper, image, stream, rows, cols, avgR, avgG, avgB, avgA, log })
 }
 
 /**
