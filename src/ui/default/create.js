@@ -30,7 +30,7 @@ export function create({
 
   const runDistortion = () => {
     distortImage({
-      image: $checkboxStream.checked ? $video : image,
+      input: $checkboxStream.checked ? $video : image,
       canvas: $canvas,
       avgR: $avgR.checked,
       avgG: $avgG.checked,
@@ -41,7 +41,7 @@ export function create({
       log,
     });
     if ($checkboxStream.checked) {
-      setTimeout(runDistortion, 0);
+      setTimeout(runDistortion, 300);
     }
   };
 
@@ -74,7 +74,7 @@ export function create({
     };
   }
 
-  $checkboxStream.onchange = getCheckboxStreamOnChangeHandler($video, $canvas, runDistortion);
+  $checkboxStream.onchange = getCheckboxStreamOnChangeHandler($video, runDistortion);
   setCheckbox($checkboxStream, !!stream);
 }
 

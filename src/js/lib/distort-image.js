@@ -5,7 +5,7 @@ let running = false;
 
 export function distortImage({
   canvas = new HTMLCanvasElement(),
-  image = null,
+  input = null,
   rows = 8,
   cols = 8,
   avgR = false,
@@ -21,8 +21,11 @@ export function distortImage({
     throw Error('Invalid block size');
   }
 
-  rows = Math.min(rows, Math.max(canvas.height, image.height));
-  cols = Math.min(cols, Math.max(canvas.width, image.width));
+  const inputHeight = input.height || input.videoHeight;
+  const inputWidth = input.width || input.videoWidth;
+
+  rows = Math.min(rows, inputHeight);
+  cols = Math.min(cols, inputWidth);
 
   const actionLabel = (() => {
     let label = `${rows} rows, ${cols} cols`;
@@ -36,26 +39,25 @@ export function distortImage({
   running = true;
   if (log) console.time(actionLabel);
 
-  canvas.width = image.width;
-  canvas.height = image.height;
+  canvas.height = inputHeight;
+  canvas.width = inputWidth;
 
   const ctx = canvas.getContext('2d');
-  ctx.drawImage(image, 0, 0);
+  ctx.drawImage(input, 0, 0);
 
-  const { width, height } = canvas;
-  const imageData = ctx.getImageData(0, 0, width, height);
+  const imageData = ctx.getImageData(0, 0, inputWidth, inputHeight);
   const { data: pixels } = imageData;
 
   const arr = make(rows, () => make(cols, () => new Pixel()));
-  const rowHeight = Math.ceil(height / rows);
-  const colWidth = Math.ceil(width / cols);
+  const rowHeight = Math.ceil(inputHeight / rows);
+  const colWidth = Math.ceil(inputWidth / cols);
 
   const loop = (fn) => {
     let row = 0;
     let rowlimit = rowHeight;
 
-    for (let i = 0; i < height; i += 1) {
-      const past = i * width * 4;
+    for (let i = 0; i < inputHeight; i += 1) {
+      const past = i * inputWidth * 4;
       if (i === rowlimit) {
         row += 1;
         rowlimit += rowHeight;
@@ -64,7 +66,7 @@ export function distortImage({
       let col = 0;
       let collimit = colWidth;
 
-      for (let j = 0, px = 0; j < width; j += 1, px += 4) {
+      for (let j = 0, px = 0; j < inputWidth; j += 1, px += 4) {
         if (j >= collimit) {
           col += 1;
           collimit += colWidth;

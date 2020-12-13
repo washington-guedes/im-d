@@ -8,7 +8,7 @@ import { loadImage as _loadImage } from './js/lib/load-image';
 * - The result will be set on the { canvas } element
 */
 export function runDistortion({
-  image,
+  input,
   canvas,
   stream = false,
   rows = 8,
@@ -19,14 +19,14 @@ export function runDistortion({
   avgA = false,
   log = false,
 } = {}) {
-  if (!image) {
-    throw Error('Missing photo image');
+  if (!input) {
+    throw Error('Missing photo input');
   }
   if (!canvas) {
     throw Error('Missing canvas');
   }
   distortImage({
-    canvas, image, stream, rows, cols, avgR, avgG, avgB, avgA, log,
+    canvas, input, stream, rows, cols, avgR, avgG, avgB, avgA, log,
   });
 }
 

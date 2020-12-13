@@ -12,7 +12,7 @@ export class Pixel {
     this.g += g;
     this.b += b;
     this.a += a;
-    this.len += 0;
+    this.len += 1;
   }
 
   avg(s = 'rgba') {
