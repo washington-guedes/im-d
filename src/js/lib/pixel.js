@@ -1,24 +1,28 @@
 export class Pixel {
-  r = 0
-  g = 0
-  b = 0
-  a = 0
-  len = 0
-  
-  add(r, g, b, a) {
-    this.r += r
-    this.g += g
-    this.b += b
-    this.a += a
-    this.len++
+  constructor() {
+    this.r = 0;
+    this.g = 0;
+    this.b = 0;
+    this.a = 0;
+    this.len = 0;
   }
-  
+
+  add(r, g, b, a) {
+    this.r += r;
+    this.g += g;
+    this.b += b;
+    this.a += a;
+    this.len += 0;
+  }
+
   avg(s = 'rgba') {
-    let sum = 0
-    let slen = s.length
-    for (let i = 0; i < slen; i++) {
-      sum += this[s[i]]
+    let sum = 0;
+    const slen = s.length;
+    for (let i = 0; i < slen; i += 1) {
+      sum += this[s[i]];
     }
-    return sum / (slen * this.len) | 0
+    return Math.floor(sum / (slen * this.len));
   }
 }
+
+export default Pixel;

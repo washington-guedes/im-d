@@ -1,6 +1,6 @@
-import { create as _createDefaultUI } from './ui/default/create'
-import { run as _runImageDistortion } from './js/lib/distort-image'
-import { loadImage as _loadImage } from './js/lib/load-image'
+import { create } from './ui/default/create';
+import { distortImage } from './js/lib/distort-image';
+import { loadImage as _loadImage } from './js/lib/load-image';
 
 /**
 * Use this method if you have built a **custom UI**
@@ -10,21 +10,24 @@ import { loadImage as _loadImage } from './js/lib/load-image'
 export function runDistortion({
   image,
   canvas,
+  stream = false,
   rows = 8,
   cols = 8,
   avgR = false,
   avgG = false,
   avgB = false,
   avgA = false,
-  log = false
+  log = false,
 } = {}) {
   if (!image) {
-    throw Error('Missing photo image')
+    throw Error('Missing photo image');
   }
   if (!canvas) {
-    throw Error('Missing canvas')
+    throw Error('Missing canvas');
   }
-  _runImageDistortion({ image, canvas, rows, cols, avgR, avgG, avgB, avgA, log })
+  distortImage({
+    canvas, image, stream, rows, cols, avgR, avgG, avgB, avgA, log,
+  });
 }
 
 /**
@@ -41,12 +44,14 @@ export function createDefaultUI({
   avgG = false,
   avgB = false,
   avgA = false,
-  log = false
+  log = false,
 } = {}) {
   if (!wrapper) {
-    throw Error('Missing wrapper element to build the default UI on it')
+    throw Error('Missing wrapper element to build the default UI on it');
   }
-  _createDefaultUI({ wrapper, image, stream, rows, cols, avgR, avgG, avgB, avgA, log })
+  create({
+    wrapper, image, stream, rows, cols, avgR, avgG, avgB, avgA, log,
+  });
 }
 
 /**
@@ -54,10 +59,10 @@ export function createDefaultUI({
 */
 export async function loadImageFromInputFile({
   inputFile,
-  log = false
+  log = false,
 } = {}) {
   if (!inputFile) {
-    throw Error('Missing input file to load image')
+    throw Error('Missing input file to load image');
   }
-  return _loadImage.call(inputFile, { log })
+  return _loadImage.call(inputFile, { log });
 }
