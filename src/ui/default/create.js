@@ -81,7 +81,11 @@ function getCheckboxStreamOnChangeHandler($video, runDistortion) {
   return async function streamChange() {
     if (this.checked) {
       try {
-        const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: 'user',
+          },
+        });
         $video.srcObject = mediaStream;
         $video.onloadedmetadata = () => {
           $video.play();
