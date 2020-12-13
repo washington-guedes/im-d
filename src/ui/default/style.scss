@@ -28,6 +28,10 @@
     max-width: 100%;
   }
 
+  &__video {
+    display: none;
+  }
+
   &__filter {
     box-sizing: border-box;
     margin: 2px;
