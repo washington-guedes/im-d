@@ -16,7 +16,7 @@ The `window.imD.createDefaultUI` method is the main one, used in the previews ab
 
 The `window.imD.runDistortion` method is the method to call if you had manually implemented a custom UI.
 
-The `window.imD.loadImageFromInputFile` methos is an auxiliary method.
+The `window.imD.loadImageFromInputFile` method is an auxiliary method.
 
 Their arguments and defaults can be seen in the [/src/index.js](./src/index.js) file
 

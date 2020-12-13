@@ -1,5 +1,5 @@
 window.imD.createDefaultUI({
-  wrapper: document.getElementById('im-d--wrapper'),
+  wrapper: document.getElementById('im-d__wrapper'),
   image: (() => {
     const img = new Image();
     img.crossOrigin = 'Anonymous';

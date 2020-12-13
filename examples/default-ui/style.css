@@ -12,7 +12,7 @@ body {
   justify-content: center;
 }
 
-#im-d--wrapper {
-  width: 75%;
-  height: 75%;
+#im-d__wrapper {
+  width: calc(100% - 80px);
+  height: calc(100% - 80px);
 }
