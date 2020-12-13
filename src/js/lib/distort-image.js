@@ -21,8 +21,8 @@ export function distortImage({
     throw Error('Invalid block size');
   }
 
-  const inputHeight = input.height || input.videoHeight;
-  const inputWidth = input.width || input.videoWidth;
+  const inputHeight = input.height || input.videoHeight || canvas.height;
+  const inputWidth = input.width || input.videoWidth || canvas.width;
 
   rows = Math.min(rows, inputHeight);
   cols = Math.min(cols, inputWidth);

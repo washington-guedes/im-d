@@ -3,20 +3,20 @@ const { spawn } = require('child_process');
 
 async function build(event, filename) {
   console.log('-'.repeat(80));
-  console.log(`Build started at ${new Date().toLocaleString()}.`);
+  const startedAt = new Date();
+  console.log(`Build started at ${startedAt.toLocaleString()}.`);
 
   const key = `${event} - ${filename}`;
   console.log(key);
-  console.time(key);
 
   await new Promise((done) => {
     const job = spawn('npm', ['run', 'build'], { stdio: 'inherit' });
     job.on('exit', done);
   });
 
-  console.log('');
-  console.timeEnd(key);
-  console.log(`Build finished at ${new Date().toLocaleString()}.`);
+  const finishedAt = new Date();
+  console.log(`\n${key} ${(finishedAt - startedAt) / 1000} sec`);
+  console.log(`Build finished at ${finishedAt.toLocaleString()}.`);
 }
 
 watch('./src', { recursive: true }, (ev, filename) => {

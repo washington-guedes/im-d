@@ -41,7 +41,11 @@ export function create({
       log,
     });
     if ($checkboxStream.checked) {
-      setTimeout(runDistortion, 300);
+      const HAVE_FUTURE_DATA = 3;
+      const HAVE_ENOUGH_DATA = 4;
+      if ($video.readyState === HAVE_FUTURE_DATA || $video.readyState === HAVE_ENOUGH_DATA) {
+        setTimeout(runDistortion, 300);
+      }
     }
   };
 
@@ -52,12 +56,11 @@ export function create({
     input.oninput = () => runDistortion();
   });
 
-  $file.onchange = async function onchange() {
+  $file.onchange = async function fileChange() {
     image = await loadImage.call($file, { log });
-    $rows.max = image.height;
-    $cols.max = image.width;
     runDistortion();
   };
+  $file.onclick = () => setCheckbox($checkboxStream, false);
 
   $rows.value = rows;
   $cols.value = cols;
@@ -66,12 +69,8 @@ export function create({
   if (avgB) $avgB.checked = true;
   if (avgA) $avgA.checked = true;
 
-  if (image) {
-    image.onload = () => {
-      $rows.max = image.height;
-      $cols.max = image.width;
-      runDistortion();
-    };
+  if (image && !$checkboxStream.checked) {
+    image.onload = () => runDistortion();
   }
 
   $checkboxStream.onchange = getCheckboxStreamOnChangeHandler($video, runDistortion);
@@ -79,7 +78,7 @@ export function create({
 }
 
 function getCheckboxStreamOnChangeHandler($video, runDistortion) {
-  return async function onchange() {
+  return async function streamChange() {
     if (this.checked) {
       try {
         const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -89,10 +88,8 @@ function getCheckboxStreamOnChangeHandler($video, runDistortion) {
           runDistortion();
         };
       } catch (e) {
-        setCheckbox({
-          checkbox: this,
-          checked: false,
-        });
+        setCheckbox(this, false);
+        runDistortion();
       }
     } else {
       stopVideo($video);

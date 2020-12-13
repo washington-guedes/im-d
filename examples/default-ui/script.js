@@ -4,7 +4,7 @@ window.imageDistortion.createDefaultUI({
   image: (() => {
     const img = new Image();
     img.crossOrigin = 'Anonymous';
-    img.src = 'https://images-na.ssl-images-amazon.com/images/I/41HXUK8edZL.png';
+    img.src = 'https://i1.sndcdn.com/avatars-000589154457-u2cvrc-t500x500.jpg';
     return img;
   })(),
 });
