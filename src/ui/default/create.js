@@ -28,7 +28,9 @@ export function create({
   const $canvas = wrapper.querySelector('.im-d__canvas');
   const $video = wrapper.querySelector('.im-d__video');
 
+  let timeoutId = 0;
   const runDistortion = () => {
+    clearTimeout(timeoutId);
     distortImage({
       input: $checkboxStream.checked ? $video : image,
       canvas: $canvas,
@@ -44,7 +46,7 @@ export function create({
       const HAVE_FUTURE_DATA = 3;
       const HAVE_ENOUGH_DATA = 4;
       if ($video.readyState === HAVE_FUTURE_DATA || $video.readyState === HAVE_ENOUGH_DATA) {
-        setTimeout(runDistortion, 300);
+        timeoutId = setTimeout(runDistortion, 300);
       }
     }
   };
