@@ -27,8 +27,8 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'image-distortion.min.js',
-    library: 'imageDistortion',
+    filename: 'im-d.min.js',
+    library: 'imD',
     libraryTarget: 'window',
   },
   plugins: [

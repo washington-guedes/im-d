@@ -1,5 +1,5 @@
 {
-  "name": "image-distortion",
+  "name": "im-d",
   "version": "1.0.0",
   "description": "Get average RGBA values of image pixels in blocks, also allowing grayscale effect.",
   "private": true,
@@ -8,13 +8,13 @@
     "build": "npx webpack"
   },
   "author": "avwl017@gmail.com",
-  "homepage": "https://github.com/washington-guedes/image-distortion#readme",
+  "homepage": "https://github.com/washington-guedes/im-d#readme",
   "bugs": {
-    "url": "https://github.com/washington-guedes/image-distortion/issues"
+    "url": "https://github.com/washington-guedes/im-d/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/washington-guedes/image-distortion.git"
+    "url": "git+https://github.com/washington-guedes/im-d.git"
   },
   "keywords": [
     "image",

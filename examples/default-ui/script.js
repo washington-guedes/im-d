@@ -1,6 +1,5 @@
-window.imageDistortion.createDefaultUI({
-  wrapper: document.getElementById('image-distortion--wrapper'),
-  log: true,
+window.imD.createDefaultUI({
+  wrapper: document.getElementById('im-d--wrapper'),
   image: (() => {
     const img = new Image();
     img.crossOrigin = 'Anonymous';
