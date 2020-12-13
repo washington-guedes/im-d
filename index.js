@@ -1,27 +1,28 @@
 const { watch } = require('fs');
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
-watch('./src', { recursive: true }, (e, filename) => {
-  hr();
-  console.log(new Date().toLocaleString(), e, filename);
-  build(() => hr());
+async function build(event, filename) {
+  console.log('-'.repeat(80));
+  console.log(`Build started at ${new Date().toLocaleString()}.`);
+
+  const key = `${event} - ${filename}`;
+  console.log(key);
+  console.time(key);
+
+  await new Promise((done) => {
+    const job = spawn('npm', ['run', 'build'], { stdio: 'inherit' });
+    job.on('exit', done);
+  });
+
+  console.log('');
+  console.timeEnd(key);
+  console.log(`Build finished at ${new Date().toLocaleString()}.`);
+}
+
+watch('./src', { recursive: true }, (ev, filename) => {
+  build(ev, filename);
 });
 
-function hr() {
-  console.log('-'.repeat(80));
-}
-
-function build(callback) {
-  exec('npm run build', (err, stdout, stderr) => {
-    if (err) {
-      console.error(stderr || err);
-      return;
-    }
-    console.log(stdout);
-    console.log(new Date().toLocaleString(), 'build finished \n');
-
-    callback();
-  });
-}
-
-build(() => console.log('Development mode started. Have fun :D \n'));
+build('boot', '/index.js')
+  .then(() => console.log('\nDevelopment mode started.\nHave fun :D \n'))
+  .catch((e) => console.error(e));

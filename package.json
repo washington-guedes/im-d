@@ -4,7 +4,7 @@
   "description": "Get average RGBA values of image pixels in blocks, also allowing grayscale effect.",
   "private": true,
   "scripts": {
-    "serve": "node --experimental-modules index.js",
+    "serve": "node index.js",
     "build": "npx webpack"
   },
   "author": "avwl017@gmail.com",
